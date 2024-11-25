@@ -1,7 +1,7 @@
-function TravelPlanCard({plan, handleDelete}) {
+function TravelPlanCard({ plan, handleDelete, handleFav }) {
     return (
         <>
-        {plan.map((p) => (
+            {plan.map((p) => (
                 <div className="container mb-3 d-flex flex-row flex-row border border-black" key={p.id}>
                     <div>
                         <img className="p-3" width="350px" src={p.image} alt={p.destination} />
@@ -15,7 +15,10 @@ function TravelPlanCard({plan, handleDelete}) {
                             {p.totalCost >= 1500 && <label className="bg-primary text-light rounded px-2"><strong>Premium</strong></label>}
                             {p.allInclusive && <label className="bg-primary text-light rounded px-2"><strong>All-Inclusive</strong></label>}
                         </div>
-                        <button id={p.id} onClick={() => handleDelete(event)} className="mt-auto mb-3 btn btn-secondary" type="button">Delete</button>
+                        <div className="d-flex mt-auto mb-3 col-12 justify-content-between">
+                            <button id={p.id} onClick={() => handleDelete(event)} className="btn btn-secondary" type="button">Delete</button>
+                            <button id={p.id} onClick={() => handleFav(event)} className="btn btn-secondary" type="button">♡</button>
+                        </div>
                     </div>
                 </div>
             ))}
